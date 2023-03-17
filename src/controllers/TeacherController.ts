@@ -52,15 +52,15 @@ export default class TeacherController {
     res.json(teacher)
   }
 
- 
   public readonly create = async (req: Request, res: Response) => {
     const teacher = req.body as CreateTeacherDTO
+
     "// TODO:  definir el formato de error."
     try {
       await createTeacherSchema.validateAsync(teacher)
     } catch (error) {
       res.status(400).json({
-        error: error.message
+        message: error.message
       })
       return
     }
@@ -74,12 +74,13 @@ export default class TeacherController {
   public readonly update = async (req: Request, res: Response) => {
     const { id } = req.params
     const teacher = req.body as UpdateTeacherDTO
+
     "// TODO:  definir el formato de error."
     try {
       await updateTeacherSchema.validateAsync(teacher)
     } catch (error) {
       res.status(400).json({
-        error: error.message
+        message: error.message
       })
       return
     }
@@ -87,12 +88,12 @@ export default class TeacherController {
     console.log('Editar', id, teacher)
     res.sendStatus(204)
   }
-
+  
   public readonly delete = async (req: Request, res: Response) => {
     const { id } = req.params
-
+    
     console.log('Eliminar', id)
-
     res.sendStatus(204)
+
   }
 }

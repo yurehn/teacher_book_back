@@ -10,7 +10,7 @@ export const createTeacherSchema: Joi.ObjectSchema<CreateTeacherDTO> = Joi.objec
 })
 
 export const updateTeacherSchema: Joi.ObjectSchema<UpdateTeacherDTO> = Joi.object().keys({
-  name: Joi.string().max(20, 'utf8'),
+  name: Joi.string().max(20),
   last_name: Joi.string().max(20),
   date_of_bird: Joi.date()
 })
