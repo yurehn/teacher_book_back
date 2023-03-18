@@ -9,4 +9,4 @@ export interface CourseDTO extends BaseCourseDTO {
 
 export interface CreateCourseDTO extends BaseCourseDTO {}
 
-export interface UpdateCourseDTO extends Partial<BaseCourseDTO>
+export interface UpdateCourseDTO extends Partial<BaseCourseDTO> {}
