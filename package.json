@@ -6,6 +6,10 @@
   "repository": "https://github.com/panchocorderos/lesson_link_back.git",
   "author": "Pancho Cordero <fcordero@nnodes.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --files src/index.ts"
+  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
