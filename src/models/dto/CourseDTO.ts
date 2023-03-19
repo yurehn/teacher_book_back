@@ -1,12 +1,12 @@
 interface BaseCourseDTO {
-    id?: number
-    name: string
+  id?: number
+  name: string
 }
 
 export interface CourseDTO extends BaseCourseDTO {
-    id: number
+  id: number
 }
 
-export interface CreateCourseDTO extends BaseCourseDTO {}
+export interface CreateCourseDTO extends BaseCourseDTO { }
 
-export interface UpdateCourseDTO extends Partial<BaseCourseDTO>
+export interface UpdateCourseDTO extends Partial<BaseCourseDTO> { }
