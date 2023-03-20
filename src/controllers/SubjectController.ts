@@ -9,28 +9,23 @@ export default class AnnotationController {
     const subject: SubjectDTO[] = [
       {
         id: 1,
-        subject: "Mathematics",
-        teacherId: 1
+        subject: "Mathematics"
       },
       {
         id: 2,
-        subject: "Science",
-        teacherId: 2
+        subject: "Science"
       },
       {
         id: 3,
-        subject: "Music",
-        teacherId: 3
+        subject: "Music"
       },
       {
         id: 4,
-        subject: "Spanish",
-        teacherId: 4
+        subject: "Spanish"
       },
       {
         id: 5,
-        subject: "Arts & Design",
-        teacherId: 5
+        subject: "Arts & Design"
       }
     ]
 
@@ -42,8 +37,7 @@ export default class AnnotationController {
 
     const subject: SubjectDTO = {
       id: parseInt(id),
-      subject: "Sports",
-      teacherId: 1
+      subject: "Sports"
     }
 
     res.json(subject)

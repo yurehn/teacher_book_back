@@ -1,7 +1,6 @@
 interface BaseSubjectDTO {
   id?: number;
   subject: string;
-  teacherId: number;
 }
   
 export interface SubjectDTO extends BaseSubjectDTO {
