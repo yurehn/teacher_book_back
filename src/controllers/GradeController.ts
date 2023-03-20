@@ -10,32 +10,27 @@ export default class AnnotationController {
       {
         id: 1,
         grade: "1A",
-        head_teacherId: 1,
-        subjectId: 1
+        head_teacherId: 1
       },
       {
         id: 2,
         grade: "2B",
-        head_teacherId: 1,
-        subjectId: 1
+        head_teacherId: 1
       },
       {
         id: 3,
         grade: "3C",
-        head_teacherId: 1,
-        subjectId: 2
+        head_teacherId: 1
       },
       {
         id: 4,
         grade: "4A",
-        head_teacherId: 1,
-        subjectId: 3
+        head_teacherId: 1
       },
       {
         id: 5,
         grade: "5B",
-        head_teacherId: 1,
-        subjectId: 4
+        head_teacherId: 1
       },
     ]
 
@@ -49,8 +44,7 @@ export default class AnnotationController {
     const grade: GradeDTO = {
       id: parseInt(id),
       grade: "5B",
-      head_teacherId: 1,
-      subjectId: 4
+      head_teacherId: 1
     }
 
     res.json(grade)

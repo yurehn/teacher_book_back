@@ -2,7 +2,6 @@ interface BaseGradeDTO {
   id?: number;
   grade: string;
   head_teacherId: number;
-  subjectId: number;
 }
 
 export interface GradeDTO extends BaseGradeDTO {
