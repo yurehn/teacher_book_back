@@ -3,6 +3,7 @@ import courseRoutes from './courseRoutes'
 import studentRoutes from './studentRoutes'
 import annotationRoutes from "./annotationRoutes"
 import teacherRoutes from './teacherRoutes'
+import gradeRoutes from './gradeRoutes'
 import subjectRoutes from './subjectRoutes'
 
 
@@ -12,6 +13,7 @@ apiRoutes.use('/courses', courseRoutes)
 apiRoutes.use('/student', studentRoutes)
 apiRoutes.use('/annotation', annotationRoutes)
 apiRoutes.use('/teacher', teacherRoutes)
+apiRoutes.use('/grade', gradeRoutes)
 apiRoutes.use('/subject', subjectRoutes)
 
 export default apiRoutes
