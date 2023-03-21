@@ -3,7 +3,7 @@ import { GradeDTO, CreateGradeDTO, UpdateGradeDTO } from "../models/dto/GradeDTO
 import { createGradeSchema, updateGradeSchema } from "../models/validators/gradeSchemas"
 
 
-export default class AnnotationController {
+export default class GradeController {
 
   public readonly getAll = async (_req: Request, res: Response) => {
     const grade: GradeDTO[] = [
