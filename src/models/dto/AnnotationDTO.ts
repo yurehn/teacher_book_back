@@ -1,7 +1,8 @@
 interface BaseAnnotationDTO {
   id?: number;
   teacherId: number;
-  type: string;
+  studentId: number;
+  type_annotation: string;
   description: string;
 }
 

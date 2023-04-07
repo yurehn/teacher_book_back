@@ -8,6 +8,6 @@ export const createSubject_teacherSchema: Joi.ObjectSchema<CreateSubject_teacher
 })
 
 export const updateSubject_teacherSchema: Joi.ObjectSchema<UpdateSubject_teacherDTO> = Joi.object().keys({
-  subjectId: Joi.number().required(),
-  teacherId: Joi.number().required()
+  subjectId: Joi.number(),
+  teacherId: Joi.number()
 })

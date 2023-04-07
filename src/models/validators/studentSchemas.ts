@@ -15,6 +15,6 @@ export const updateStudentSchema: Joi.ObjectSchema<UpdateStudentDTO> = Joi.objec
   name: Joi.string().max(20),
   last_name: Joi.string().max(20),
   date_of_bird: Joi.date(),
-  gradeId: Joi.number().required(),
-  gender: Joi.string().valid('male', 'female').required()
+  gradeId: Joi.number(),
+  gender: Joi.string().valid('male', 'female')
 })

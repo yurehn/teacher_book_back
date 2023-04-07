@@ -1,53 +1,14 @@
 import { Request, Response } from "express"
 import { StudentDTO, CreateStudentDTO, UpdateStudentDTO } from "../models/dto/StudentDTO"
 import { createStudentSchema, updateStudentSchema } from "../models/validators/studentSchemas"
+import StudentRepository from "../models/repositories/StudentRepository"
 
 
-export default class AnnotationController {
+export default class StudentController {
 
   public readonly getAll = async (_req: Request, res: Response) => {
-    const student: StudentDTO[] = [
-      {
-        id: 1,
-        name: "Ricardo",
-        last_name: "Pérez",
-        date_of_bird: new Date("1995-06-12"),
-        gradeId: 1,
-        gender: "male",
-      },
-      {
-        id: 2,
-        name: "Ana",
-        last_name: "González",
-        date_of_bird: new Date("1993-09-27"),
-        gradeId: 2,
-        gender: "female",
-      },
-      {
-        id: 3,
-        name: "Mario",
-        last_name: "Hernández",
-        date_of_bird: new Date("1992-03-21"),
-        gradeId: 1,
-        gender: "male",
-      },
-      {
-        id: 4,
-        name: "Sofía",
-        last_name: "Martínez",
-        date_of_bird: new Date("1996-11-08"),
-        gradeId: 3,
-        gender: "female",
-      },
-      {
-        id: 5,
-        name: "Carlos",
-        last_name: "Gómez",
-        date_of_bird: new Date("1994-07-03"),
-        gradeId: 2,
-        gender: "male",
-      }
-    ]
+    const repository = new StudentRepository()
+    const student: StudentDTO[] = await repository.findAll()
 
     res.json(student)
   }
@@ -55,23 +16,21 @@ export default class AnnotationController {
   public readonly getById = async (req: Request, res: Response) => {
 
     const { id } = req.params
+    const repository = new StudentRepository()
+    const student = await repository.findById(parseInt(id))
 
-    const student: StudentDTO = {
-      id: parseInt(id),
-      name: "Carlos",
-      last_name: "Gómez",
-      date_of_bird: new Date("1994-07-03"),
-      gradeId: 2,
-      gender: "male",
+    if (!student) {
+      res.status(404).json({
+        message: "Student not found"
+      })
+      return
     }
 
     res.json(student)
   }
 
   public readonly create = async (req: Request, res: Response) => {
-    console.log('2');
     const student = req.body as CreateStudentDTO
-    console.log('1');
     
 
     "// TODO: definir el formato de error."
@@ -84,15 +43,14 @@ export default class AnnotationController {
       return
     }
 
-    res.json({
-      id: 8,
-      ...student
-    })
+    const repository = new StudentRepository()
+    const newStudent = await repository.create(student)
+
+    res.json(newStudent)
   }
 
   public readonly update = async (req: Request, res: Response) => {
     const { id } = req.params
-
     const student = req.body as UpdateStudentDTO
 
     "// TODO:  definir el formato de error."
@@ -106,14 +64,16 @@ export default class AnnotationController {
       return
     }
 
-    console.log('Editar', id, student)
+    const repository = new StudentRepository()
+    await repository.update(parseInt(id), student)
     res.sendStatus(204)
   }
 
   public readonly delete = async (req: Request, res: Response) => {
     const { id } = req.params
 
-    console.log('Eliminar', id)
+    const repository = new StudentRepository()
+    await repository.delete(parseInt(id))
     res.sendStatus(204)
   }
 }

@@ -1,54 +1,28 @@
 import { Request, Response } from "express"
 import { TeacherDTO, CreateTeacherDTO, UpdateTeacherDTO } from "../models/dto/TeacherDTO"
 import { createTeacherSchema, updateTeacherSchema } from "../models/validators/teacherSchemas"
+import TeacherRepository from "../models/repositories/TeacherRepository"
 
 
 export default class TeacherController {
   public readonly getAll = async (_req: Request, res: Response) => {
-    const teacher: TeacherDTO[] = [
-      {
-        id: 1,
-        name: "John",
-        last_name: "Doe",
-        date_of_bird: new Date("1990-01-01")
-      },
-      {
-        id: 2,
-        name: "Jane",
-        last_name: "Bae",
-        date_of_bird: new Date("1992-05-14")
-      },
-      {
-        id: 3,
-        name: "Bob",
-        last_name: "Smith",
-        date_of_bird: new Date("1985-07-23")
-      },
-      {
-        id: 4,
-        name: "Alice",
-        last_name: "Johnson",
-        date_of_bird: new Date("1998-11-30")
-      },
-      {
-        id: 5,
-        name: "Mike",
-        last_name: "Davis",
-        date_of_bird: new Date("1995-03-20")
-      }
-    ]
+    const repository = new TeacherRepository()
+    const teacher: TeacherDTO[] = await repository.findAll()
     res.json(teacher)
   }
 
   public readonly getById = async (req: Request, res: Response) => {
     const { id } = req.params
-    const teacher: TeacherDTO = {
-      id: parseInt(id),
-      name: "John",
-      last_name: "Doe",
-      date_of_bird: new Date()
-    }
+    const repository = new TeacherRepository()
+    const teacher = await repository.findById(parseInt(id))
 
+    if (!teacher) {
+      res.status(404).json({
+        message: "Teacher not found"
+      })
+      return
+    }
+    
     res.json(teacher)
   }
 
@@ -65,10 +39,10 @@ export default class TeacherController {
       return
     }
 
-    res.json({
-      id: 6,
-      ...teacher
-    })
+    const repository = new TeacherRepository()
+    const newTeacher = await repository.create(teacher)
+
+    res.json(newTeacher)
   }
 
   public readonly update = async (req: Request, res: Response) => {
@@ -85,14 +59,16 @@ export default class TeacherController {
       return
     }
 
-    console.log('Editar', id, teacher)
+    const repository = new TeacherRepository()
+    await repository.update(parseInt(id), teacher)
     res.sendStatus(204)
   }
   
   public readonly delete = async (req: Request, res: Response) => {
     const { id } = req.params
     
-    console.log('Eliminar', id)
+    const repository = new TeacherRepository()
+    await repository.delete(parseInt(id))
     res.sendStatus(204)
 
   }

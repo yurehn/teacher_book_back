@@ -1,43 +1,27 @@
 import { Request, Response } from "express"
 import { SubjectDTO, CreateSubjectDTO, UpdateSubjectDTO } from "../models/dto/SubjectDTO"
 import { createSubjectSchema, updateSubjectSchema } from "../models/validators/subjectSchemas"
+import SubjectRepository from "../models/repositories/SubjectRepository"
 
 
 export default class AnnotationController {
 
   public readonly getAll = async (_req: Request, res: Response) => {
-    const subject: SubjectDTO[] = [
-      {
-        id: 1,
-        subject: "Mathematics"
-      },
-      {
-        id: 2,
-        subject: "Science"
-      },
-      {
-        id: 3,
-        subject: "Music"
-      },
-      {
-        id: 4,
-        subject: "Spanish"
-      },
-      {
-        id: 5,
-        subject: "Arts & Design"
-      }
-    ]
-
+    const repository = new SubjectRepository()
+    const subject: SubjectDTO[] = await repository.findAll()
     res.json(subject)
   }
 
   public readonly getById = async (req: Request, res: Response) => {
     const { id } = req.params
+    const repository = new SubjectRepository()
+    const subject = await repository.findById(parseInt(id))
 
-    const subject: SubjectDTO = {
-      id: parseInt(id),
-      subject: "Sports"
+    if (!subject) {
+      res.status(404).json({
+        message: "Subject not found"
+      })
+      return
     }
 
     res.json(subject)
@@ -56,10 +40,10 @@ export default class AnnotationController {
       return
     }
 
-    res.json({
-      id: 6,
-      ...subject
-    })
+    const repository = new SubjectRepository()
+    const newSubject = await repository.create(subject)
+
+    res.json(newSubject)
   }
 
   public readonly update = async (req: Request, res: Response) => {
@@ -78,14 +62,16 @@ export default class AnnotationController {
       return
     }
 
-    console.log('Editar', id, subject)
+    const repository = new SubjectRepository()
+    await repository.update(parseInt(id), subject)
     res.sendStatus(204)
   }
 
   public readonly delete = async (req: Request, res: Response) => {
     const { id } = req.params
 
-    console.log('Eliminar', id)
+    const repository = new SubjectRepository()
+    await repository.delete(parseInt(id))
     res.sendStatus(204)
   }
 }
