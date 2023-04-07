@@ -7,5 +7,5 @@ export const createSubjectSchema: Joi.ObjectSchema<CreateSubjectDTO> = Joi.objec
 })
 
 export const updateSubjectSchema: Joi.ObjectSchema<UpdateSubjectDTO> = Joi.object().keys({
-  subject: Joi.string().max(60).required()
+  subject: Joi.string().max(60)
 })
