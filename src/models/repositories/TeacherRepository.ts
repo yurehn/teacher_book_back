@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 import { CreateTeacherDTO, TeacherDTO, UpdateTeacherDTO } from "../dto/TeacherDTO"
 
 
@@ -26,6 +26,7 @@ export default class TeacherRepository {
     const newTeacher = await prisma.teacher.create({
       data: {
         ...teacher,
+        gender: teacher.gender as Gender,
         date_of_bird: new Date(teacher.date_of_bird).toISOString()
       }
     })
@@ -40,6 +41,7 @@ export default class TeacherRepository {
       },
       data: {
         ...teacher,
+        gender: teacher.gender ? teacher.gender as Gender : undefined,
         date_of_bird: teacher.date_of_bird ? new Date(teacher.date_of_bird).toISOString() : undefined
       }
     })

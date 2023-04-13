@@ -1,14 +1,18 @@
 import Joi from "joi"
 import { CreateStudentDTO, UpdateStudentDTO } from "../dto/StudentDTO"
+import { Gender } from "../../../enums/types"
+import { rutRegex } from "../../../utils/rutValidation"
 
 
 "// TODO:  agregar regex, a name y last_name, para que solo acepte letras."
+
 export const createStudentSchema: Joi.ObjectSchema<CreateStudentDTO> = Joi.object().keys({
   name: Joi.string().max(20).required(),
   last_name: Joi.string().max(20).required(),
   date_of_bird: Joi.date().required(),
   gradeId: Joi.number().required(),
-  gender: Joi.string().valid('male', 'female').required()
+  gender: Joi.string().valid(Gender.Male, Gender.Female).required(),
+  rut: Joi.string().regex(rutRegex, { name: 'rut' }).required()
 })
 
 export const updateStudentSchema: Joi.ObjectSchema<UpdateStudentDTO> = Joi.object().keys({
@@ -16,5 +20,6 @@ export const updateStudentSchema: Joi.ObjectSchema<UpdateStudentDTO> = Joi.objec
   last_name: Joi.string().max(20),
   date_of_bird: Joi.date(),
   gradeId: Joi.number(),
-  gender: Joi.string().valid('male', 'female')
+  gender: Joi.string().valid(Gender.Male, Gender.Female),
+  rut: Joi.string().regex(rutRegex, { name: 'rut' })
 })

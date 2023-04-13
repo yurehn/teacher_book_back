@@ -2,74 +2,56 @@ import { Request, Response } from "express"
 import { TeacherDTO, CreateTeacherDTO, UpdateTeacherDTO } from "../models/dto/TeacherDTO"
 import { createTeacherSchema, updateTeacherSchema } from "../models/validators/teacherSchemas"
 import TeacherRepository from "../models/repositories/TeacherRepository"
+import { tryCatch } from "../../utils/tryCatch"
+import { appError } from '../../middleware/errorHandler'
 
 
 export default class TeacherController {
-  public readonly getAll = async (_req: Request, res: Response) => {
+  public readonly getAll = tryCatch( async (_req: Request, res: Response) => {
     const repository = new TeacherRepository()
     const teacher: TeacherDTO[] = await repository.findAll()
     res.json(teacher)
-  }
+  })
 
-  public readonly getById = async (req: Request, res: Response) => {
+  public readonly getById = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
     const repository = new TeacherRepository()
     const teacher = await repository.findById(parseInt(id))
 
     if (!teacher) {
-      res.status(404).json({
-        message: "Teacher not found"
-      })
-      return
+      throw new appError(404, "Teacher not found")
     }
     
     res.json(teacher)
-  }
+  })
 
-  public readonly create = async (req: Request, res: Response) => {
+  public readonly create = tryCatch( async (req: Request, res: Response) => {
     const teacher = req.body as CreateTeacherDTO
 
-    "// TODO:  definir el formato de error."
-    try {
-      await createTeacherSchema.validateAsync(teacher)
-    } catch (error) {
-      res.status(400).json({
-        message: error.message
-      })
-      return
-    }
-
+    await createTeacherSchema.validateAsync(teacher)
+    
     const repository = new TeacherRepository()
     const newTeacher = await repository.create(teacher)
-
     res.json(newTeacher)
-  }
+  })
 
-  public readonly update = async (req: Request, res: Response) => {
+  public readonly update = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
     const teacher = req.body as UpdateTeacherDTO
 
-    "// TODO:  definir el formato de error."
-    try {
-      await updateTeacherSchema.validateAsync(teacher)
-    } catch (error) {
-      res.status(400).json({
-        message: error.message
-      })
-      return
-    }
+    await updateTeacherSchema.validateAsync(teacher)
 
     const repository = new TeacherRepository()
     await repository.update(parseInt(id), teacher)
     res.sendStatus(204)
-  }
+  })
   
-  public readonly delete = async (req: Request, res: Response) => {
+  public readonly delete = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
     
     const repository = new TeacherRepository()
     await repository.delete(parseInt(id))
     res.sendStatus(204)
 
-  }
+  })
 }
