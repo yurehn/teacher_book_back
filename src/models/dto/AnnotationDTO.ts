@@ -4,12 +4,12 @@ interface BaseAnnotationDTO {
   studentId: number;
   description: string;
   type_annotation: string;
-  // date_creation?: Date;
+  date_creation?: Date;
 }
 
 export interface AnnotationDTO extends BaseAnnotationDTO {
   id: number;
-  // date_creation: Date;
+  date_creation: Date;
 }
 
 export interface CreateAnnotationDTO extends BaseAnnotationDTO { }
