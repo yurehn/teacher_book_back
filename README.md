@@ -49,5 +49,3 @@ Para ejecutar los test, siga los siguietes pasos:
 ## Documentación
 
 - Puede encontrar la documentación de endpoint [//].
-
-- Puede encontrar la documentación de errores [//].
