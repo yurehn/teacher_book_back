@@ -37,7 +37,7 @@ Para clonar y utilizar este repositorio, siga los siguientes pasos:
 ```bash
   npx prisma db push
 ```
-7. Inicie la aplicación en modo de desarrollo:
+7. Inicie la aplicación en modo de desarrollo utilizando npm o yarn:
 ```bash
   npm run dev
 ```
