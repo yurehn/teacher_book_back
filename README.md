@@ -16,8 +16,7 @@ Lesson_link_back está construido con las siguientes tecnologías:
 Para clonar y utilizar este repositorio, siga los siguientes pasos:
 
 1. Descargar Docker Desktop desde su [sitio web oficial](https://www.docker.com/products/docker-desktop/).
-2. Si es parte del equipo solicite los archivos necesarios (archivos para crear docker y crear BD).
-
+2. Solicitar archivos necesarios (archivos para crear docker y crear BD).
 3. Clone este repositorio a su computadora:
 ```bash
   git clone https://github.com/panchocorderos/lesson_link_back.git
