@@ -1,13 +1,13 @@
-interface BaseSubject_teacherDTO {
-  id?: number
-  subjectId: number
-  teacherId: number
+interface BaseSubject_TeacherDTO {
+  id?: number;
+  id_subject: number;
+  id_teacher: number;
 }
 
-export interface Subject_teacherDTO extends BaseSubject_teacherDTO {
-  id: number
+export interface Subject_TeacherDTO extends BaseSubject_TeacherDTO {
+  id: number;
 }
 
-export interface CreateSubject_teacherDTO extends BaseSubject_teacherDTO { }
+export interface CreateSubject_TeacherDTO extends BaseSubject_TeacherDTO { }
 
-export interface UpdateSubject_teacherDTO extends Partial<BaseSubject_teacherDTO> { }
+export interface UpdateSubject_TeacherDTO extends Partial<BaseSubject_TeacherDTO> { }

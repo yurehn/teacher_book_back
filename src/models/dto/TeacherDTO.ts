@@ -1,12 +1,16 @@
 interface BaseTeacherDTO {
-  id?: number
-  name: string
-  last_name: string
-  date_of_bird: Date
+  id?: number;
+  rut: string;
+  name: string;
+  last_name: string;
+  gender: string;
+  date_of_bird: Date;
+  profile_image: string;
+  id_credential: number;
 }
 
 export interface TeacherDTO extends BaseTeacherDTO {
-  id: number
+  id: number;
 }
 
 export interface CreateTeacherDTO extends BaseTeacherDTO { }

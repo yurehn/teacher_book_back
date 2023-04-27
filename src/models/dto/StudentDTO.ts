@@ -1,10 +1,11 @@
 interface BaseStudentDTO {
   id?: number;
+  rut: string;
   name: string;
   last_name: string;
   date_of_bird: Date;
-  gradeId: number;
   gender: string;
+  id_grade: number;
 }
 
 export interface StudentDTO extends BaseStudentDTO {
