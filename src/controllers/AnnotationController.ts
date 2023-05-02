@@ -1,57 +1,62 @@
-import { Request, Response } from "express"
-import { AnnotationDTO, CreateAnnotationDTO, UpdateAnnotationDTO } from "../models/dto/ObservationDTO"
-import { createAnnotationSchema, updateAnnotationSchema } from "../models/validators/annotationSchemas"
-import AnnotationRepository from "../models/repositories/AnnotationRepository"
-import { tryCatch } from "../../utils/tryCatch"
-import { appError } from '../../middleware/errorHandler'
-
+import { Request, Response } from "express";
+import {
+  ObservationDTO,
+  CreateObservationDTO,
+  UpdateObservationDTO,
+} from "../models/dto/ObservationDTO";
+import {
+  createAnnotationSchema,
+  updateAnnotationSchema,
+} from "../models/validators/annotationSchemas";
+import ObservationRepository from "../models/repositories/ObervationRepository";
+import { tryCatch } from "../../utils/tryCatch";
+import { appError } from "../../middleware/errorHandler";
 
 export default class AnnotationController {
+  public readonly getAll = tryCatch(async (_req: Request, res: Response) => {
+    const repository = new ObservationRepository();
+    const annotation: ObservationDTO[] = await repository.findAll();
+    res.json(annotation);
+  });
 
-  public readonly getAll = tryCatch( async (_req: Request, res: Response) => {
-    const repository = new AnnotationRepository()
-    const annotation: AnnotationDTO[] = await repository.findAll()
-    res.json(annotation)
-  })
-
-  public readonly getById = tryCatch( async (req: Request, res: Response) => {
-    const { id } = req.params
-    const repository = new AnnotationRepository()
-    const annotation = await repository.findById(parseInt(id))
+  public readonly getById = tryCatch(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const repository = new ObservationRepository();
+    const annotation = await repository.findById(parseInt(id));
 
     if (!annotation) {
-      throw new appError(404, "Annotation not found")
+      throw new appError(404, "Annotation not found");
     }
 
-    res.json(annotation)
-  })
+    res.json(annotation);
+  });
 
-  public readonly create = tryCatch( async (req: Request, res: Response) => {
-    const annotation = req.body as CreateAnnotationDTO
+  public readonly create = tryCatch(async (req: Request, res: Response) => {
+    const annotation = req.body as CreateObservationDTO;
 
-    await createAnnotationSchema.validateAsync(annotation)
-    
-    const repository = new AnnotationRepository()
-    const newAnnotation = await repository.create(annotation)
-    res.json(newAnnotation)
-  })
+    await createAnnotationSchema.validateAsync(annotation);
 
-  public readonly update = tryCatch( async (req: Request, res: Response) => {
-    const { id } = req.params
-    const annotation = req.body as UpdateAnnotationDTO
+    const repository = new ObservationRepository();
+    const newAnnotation = await repository.create(annotation);
+    res.json(newAnnotation);
+  });
 
-    await updateAnnotationSchema.validateAsync(annotation)
-    
-    const repository = new AnnotationRepository()
-    await repository.update(parseInt(id), annotation)
-    res.sendStatus(204)
-  })
+  public readonly update = tryCatch(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const annotation = req.body as UpdateObservationDTO;
 
-  public readonly delete = tryCatch( async (req: Request, res: Response) => {
-    const { id } = req.params
+    await updateAnnotationSchema.validateAsync(annotation);
 
-    const repository = new AnnotationRepository()
-    await repository.delete(parseInt(id))
-    res.sendStatus(204)
-  })
+    const repository = new ObservationRepository();
+    await repository.update(parseInt(id), annotation);
+    res.sendStatus(204);
+  });
+
+  public readonly delete = tryCatch(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const repository = new ObservationRepository();
+    await repository.delete(parseInt(id));
+    res.sendStatus(204);
+  });
 }
