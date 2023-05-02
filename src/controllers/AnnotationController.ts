@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { AnnotationDTO, CreateAnnotationDTO, UpdateAnnotationDTO } from "../models/dto/ObservationDTO"
-import { createAnnotationSchema, updateAnnotationSchema } from "../models/validators/annotationSchemas"
+import { createAnnotationSchema, updateAnnotationSchema } from "../models/validators/observationSchemas"
 import AnnotationRepository from "../models/repositories/AnnotationRepository"
 import { tryCatch } from "../../utils/tryCatch"
 import { appError } from '../../middleware/errorHandler'

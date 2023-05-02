@@ -1,13 +1,13 @@
 import Joi from "joi"
-import { CreateSubject_teacherDTO, UpdateSubject_teacherDTO } from "../dto/Subject_TeacherDTO"
+import { CreateSubject_TeacherDTO, UpdateSubject_TeacherDTO } from "../dto/Subject_TeacherDTO"
 
 
-export const createSubject_teacherSchema: Joi.ObjectSchema<CreateSubject_teacherDTO> = Joi.object().keys({
-  subjectId: Joi.number().required(),
-  teacherId: Joi.number().required()
+export const createSubject_TeacherSchema: Joi.ObjectSchema<CreateSubject_TeacherDTO> = Joi.object().keys({
+  id_subject: Joi.number().required(),
+  id_teacher: Joi.number().required()
 })
 
-export const updateSubject_teacherSchema: Joi.ObjectSchema<UpdateSubject_teacherDTO> = Joi.object().keys({
-  subjectId: Joi.number(),
-  teacherId: Joi.number()
+export const updateSubject_TeacherSchema: Joi.ObjectSchema<UpdateSubject_TeacherDTO> = Joi.object().keys({
+  id_subject: Joi.number(),
+  id_teacher: Joi.number()
 })

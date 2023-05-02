@@ -3,7 +3,7 @@ export enum Gender {
   Female = "female"
 }
 
-export enum TypeAnnotation {
+export enum TypeAbservation {
   Positive = "positive",
   Negative = "negative"
 }

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { x } from 'joi';
 
 
 export class appError extends Error {
@@ -21,7 +22,6 @@ interface ErrorObject extends Error {
 
 export const errorHandler = (error: ErrorObject, _req: Request, res: Response, _next: NextFunction) => {
   
-
   // Custom errors
   if(error instanceof appError) {
     return res.status(error.statusCode).json({ message: error.message })
