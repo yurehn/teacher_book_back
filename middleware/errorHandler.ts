@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { x } from 'joi';
 
 
 export class appError extends Error {
@@ -10,7 +9,6 @@ export class appError extends Error {
     this.statusCode = statusCode
   }
 }
-
 
 
 interface ErrorObject extends Error {

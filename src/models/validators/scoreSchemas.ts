@@ -7,7 +7,7 @@ export const createScoreSchema: Joi.ObjectSchema<CreateScoreDTO> = Joi.object().
   id_teacher: Joi.number().required(),
   id_subject: Joi.number().required(),
   id_score_value: Joi.number().required(),
-  title_mark: Joi.string().required(),
+  title_mark: Joi.string().required().max(50),
   date_creation: Joi.date().required()
 })
 
@@ -16,6 +16,6 @@ export const updateScoreSchema: Joi.ObjectSchema<UpdateScoreDTO> = Joi.object().
   id_teacher: Joi.number(),
   id_subject: Joi.number(),
   id_score_value: Joi.number(),
-  title_mark: Joi.string(),
+  title_mark: Joi.string().max(50),
   date_creation: Joi.date()
 })
