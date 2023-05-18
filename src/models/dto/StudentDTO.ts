@@ -5,7 +5,7 @@ interface BaseStudentDTO {
   last_name: string;
   date_of_bird: Date;
   gender: string;
-  id_grade: number;
+  grade_id: number;
 }
 
 export interface StudentDTO extends BaseStudentDTO {

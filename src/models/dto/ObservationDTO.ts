@@ -1,7 +1,7 @@
 interface BaseObservationDTO {
   id?: number;
-  id_teacher: number;
-  id_student: number;
+  teacher_id: number;
+  student_id: number;
   type_observation: string;
   description: string;
   date_creation: Date;

@@ -1,9 +1,9 @@
 interface BaseScoreDTO {
   id?: number;
-  id_student: number;
-  id_teacher: number;
-  id_subject: number;
-  id_score_values: number;
+  student_id: number;
+  teacher_id: number;
+  subject_id: number;
+  scoreValues_id: number;
   title_mark: string;
   date_creation: Date;
 }

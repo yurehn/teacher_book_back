@@ -4,7 +4,7 @@
   "description": "lesson_link_back",
   "main": "index.js",
   "repository": "https://github.com/panchocorderos/lesson_link_back.git",
-  "author": "Pancho Cordero <fcordero@nnodes.com>",
+  "author": "",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
