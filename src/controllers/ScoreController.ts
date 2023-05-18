@@ -1,57 +1,57 @@
 import { Request, Response } from "express"
-import { GradeDTO, CreateGradeDTO, UpdateGradeDTO } from "../models/dto/GradeDTO"
-import { createGradeSchema, updateGradeSchema } from "../models/validators/gradeSchemas"
-import GradeRepository from "../models/repositories/GradeRepository"
+import { ScoreDTO, CreateScoreDTO, UpdateScoreDTO } from "../models/dto/ScoreDTO"
+import { createScoreSchema, updateScoreSchema } from "../models/validators/scoreSchemas"
+import ScoreRepository from "../models/repositories/ScoreRepository"
 import { tryCatch } from "../../utils/tryCatch"
 import { appError } from '../../middleware/errorHandler'
 
 
-export default class GradeController {
+export default class ScoreController {
 
   public readonly getAll = tryCatch( async (_req: Request, res: Response) => {
-    const repository = new GradeRepository()
-    const grade: GradeDTO[] = await repository.findAll()
-    res.json(grade)
+    const repository = new ScoreRepository()
+    const score: ScoreDTO[] = await repository.findAll()
+    res.json(score)
   })
 
   public readonly getById = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
-    const repository = new GradeRepository()
-    const grade = await repository.findById(parseInt(id))
+    const repository = new ScoreRepository()
+    const score = await repository.findById(parseInt(id))
 
-    if (!grade) {
-      throw new appError(404, "Grade not found")
+    if (!score) {
+      throw new appError(404, "Score not found")
     }
 
-    res.json(grade)
+    res.json(score)
   })
 
   public readonly create = tryCatch( async (req: Request, res: Response) => {
-    const grade = req.body as CreateGradeDTO
+    const score = req.body as CreateScoreDTO
 
   
-    await createGradeSchema.validateAsync(grade)
+    await createScoreSchema.validateAsync(score)
     
-    const repository = new GradeRepository()
-    const newGrade = await repository.create(grade)
-    res.json(newGrade)
+    const repository = new ScoreRepository()
+    const newScore = await repository.create(score)
+    res.json(newScore)
   })
 
   public readonly update = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
-    const grade = req.body as UpdateGradeDTO
+    const score = req.body as UpdateScoreDTO
 
-    await updateGradeSchema.validateAsync(grade)
+    await updateScoreSchema.validateAsync(score)
 
-    const repository = new GradeRepository()
-    await repository.update(parseInt(id), grade)
+    const repository = new ScoreRepository()
+    await repository.update(parseInt(id), score)
     res.sendStatus(204)
   })
 
   public readonly delete = tryCatch( async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const repository = new GradeRepository()
+    const repository = new ScoreRepository()
     await repository.delete(parseInt(id))
     res.sendStatus(204)
   })
