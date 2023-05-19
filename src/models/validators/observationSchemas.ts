@@ -3,7 +3,7 @@ import { CreateObservationDTO, UpdateObservationDTO } from "../dto/ObservationDT
 import { TypeObservation } from "../../../enums/types";
 
 
-export const createAnnotationSchema: Joi.ObjectSchema<CreateObservationDTO> = Joi.object().keys({
+export const createObservationSchema: Joi.ObjectSchema<CreateObservationDTO> = Joi.object().keys({
   teacher_id: Joi.number().required(),
   student_id: Joi.number().required(),
   type_observation: Joi.string().valid(TypeObservation.Positive, TypeObservation.Negative, TypeObservation.Observation).required(),
@@ -11,7 +11,7 @@ export const createAnnotationSchema: Joi.ObjectSchema<CreateObservationDTO> = Jo
   date_creation: Joi.date().required()
 })
 
-export const updateAnnotationSchema: Joi.ObjectSchema<UpdateObservationDTO> = Joi.object().keys({
+export const updateObservationSchema: Joi.ObjectSchema<UpdateObservationDTO> = Joi.object().keys({
   teacherId: Joi.number(),
   studentId: Joi.number(),
   type_annotation: Joi.string().valid(TypeObservation.Positive, TypeObservation.Negative, TypeObservation.Observation),

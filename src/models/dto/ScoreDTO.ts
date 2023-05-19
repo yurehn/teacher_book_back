@@ -3,7 +3,7 @@ interface BaseScoreDTO {
   student_id: number;
   teacher_id: number;
   subject_id: number;
-  scoreValues_id: number;
+  scoreValue_id: number;
   title_mark: string;
   date_creation: Date;
 }

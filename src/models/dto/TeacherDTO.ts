@@ -1,3 +1,5 @@
+
+// TODO: profile_image puede ser null
 interface BaseTeacherDTO {
   id?: number;
   rut: string;
@@ -5,7 +7,7 @@ interface BaseTeacherDTO {
   last_name: string;
   gender: string;
   date_of_bird: Date;
-  profile_image: string | null;
+  profile_image: string;
 }
 
 export interface TeacherDTO extends BaseTeacherDTO {
