@@ -26,7 +26,8 @@ export default class ObservationRepository {
     const newObservation = await prisma.observation.create({
       data: {
         ...observation,
-        type_observation: observation.type_observation as TypeObservation
+        type_observation: observation.type_observation as TypeObservation,
+        date_creation: new Date(observation.date_creation).toISOString()
       }
     })
 
@@ -41,6 +42,7 @@ export default class ObservationRepository {
       data: {
         ...observation,
         type_observation: observation.type_observation ? observation.type_observation as TypeObservation : undefined,
+        date_creation: observation.date_creation ? new Date(observation.date_creation).toISOString() : undefined
       }
     })
   }

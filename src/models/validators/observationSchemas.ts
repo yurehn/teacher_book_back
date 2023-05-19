@@ -12,9 +12,9 @@ export const createObservationSchema: Joi.ObjectSchema<CreateObservationDTO> = J
 })
 
 export const updateObservationSchema: Joi.ObjectSchema<UpdateObservationDTO> = Joi.object().keys({
-  teacherId: Joi.number(),
-  studentId: Joi.number(),
-  type_annotation: Joi.string().valid(TypeObservation.Positive, TypeObservation.Negative, TypeObservation.Observation),
+  teacher_id: Joi.number(),
+  student_id: Joi.number(),
+  type_observation: Joi.string().valid(TypeObservation.Positive, TypeObservation.Negative, TypeObservation.Observation),
   description: Joi.string().max(200),
   date_creation: Joi.date()
 })

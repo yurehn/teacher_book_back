@@ -24,7 +24,10 @@ export default class ScoreRepository {
 
   public readonly create = async (score: CreateScoreDTO): Promise<ScoreDTO> => {
     const newScore = await prisma.score.create({
-      data: score
+      data: {
+        ...score,
+        date_creation: new Date(score.date_creation).toISOString()
+      }
     })
 
     return newScore
@@ -35,7 +38,10 @@ export default class ScoreRepository {
       where: {
         id
       },
-      data: score
+      data: {
+        ...score,
+        date_creation: score.date_creation ? new Date(score.date_creation).toISOString() : undefined
+      }
     })
   }
 

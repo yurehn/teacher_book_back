@@ -16,6 +16,7 @@ interface ErrorObject extends Error {
   code?: string;
   meta?: {
     target?: string;
+    field_name?: string;
   };
 }
 
@@ -35,6 +36,11 @@ export const errorHandler = (error: ErrorObject, _req: Request, res: Response, _
   // If a collision error is detected (duplicate data [unique]) 
   if (error.code === 'P2002') {
     return res.status(409).json({ message: `[${error.meta?.target}] already exists`})
+  }
+
+  // If the value provided is not valid / required field value is invalid. 
+  if (error.code === 'P2003') {
+    return res.status(409).json({ message: `${error.meta?.field_name} value provided is not valid`})
   }
 
 

@@ -11,7 +11,8 @@ export const createTeacherSchema: Joi.ObjectSchema<CreateTeacherDTO> = Joi.objec
   last_name: Joi.string().regex(name_LastNameRegex, { name: "last_name" }).min(2).max(20).required(),
   gender: Joi.string().valid(Gender.Male, Gender.Female).required(),
   date_of_bird: Joi.date().required(),
-  profile_image: Joi.string().uri()
+  profile_image: Joi.string().uri(),
+  credential_id: Joi.number().required()
 });
 
 export const updateTeacherSchema: Joi.ObjectSchema<UpdateTeacherDTO> = Joi.object().keys({

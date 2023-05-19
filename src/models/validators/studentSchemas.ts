@@ -10,7 +10,8 @@ export const createStudentSchema: Joi.ObjectSchema<CreateStudentDTO> = Joi.objec
   name: Joi.string().regex(name_LastNameRegex, { name: "name" }).min(2).max(20).required(),
   last_name: Joi.string().regex(name_LastNameRegex, { name: "last_name" }).min(2).max(20).required(),
   gender: Joi.string().valid(Gender.Male, Gender.Female).required(),
-  date_of_bird: Joi.date().required()
+  date_of_bird: Joi.date().required(),
+  grade_id: Joi.number().required()
 })
 
 export const updateStudentSchema: Joi.ObjectSchema<UpdateStudentDTO> = Joi.object().keys({
@@ -18,5 +19,6 @@ export const updateStudentSchema: Joi.ObjectSchema<UpdateStudentDTO> = Joi.objec
   name: Joi.string().regex(name_LastNameRegex, { name: "name" }).min(2).max(20),
   last_name: Joi.string().regex(name_LastNameRegex, { name: "last_name" }).min(2).max(20),
   gender: Joi.string().valid(Gender.Male, Gender.Female),
-  date_of_bird: Joi.date()
+  date_of_bird: Joi.date(),
+  grade_id: Joi.number()
 })
