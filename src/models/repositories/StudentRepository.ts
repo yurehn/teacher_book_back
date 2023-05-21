@@ -27,7 +27,7 @@ export default class StudentRepository {
       data: {
         ...student,
         gender: student.gender as Gender,
-        date_of_bird: new Date(student.date_of_bird).toISOString(),
+        date_of_birth: new Date(student.date_of_birth).toISOString(),
       }
     })
 
@@ -42,7 +42,7 @@ export default class StudentRepository {
       data: {
         ...student,
         gender: student.gender ? student.gender as Gender : undefined,
-        date_of_bird: student.date_of_bird ? new Date(student.date_of_bird).toISOString() : undefined
+        date_of_birth: student.date_of_birth ? new Date(student.date_of_birth).toISOString() : undefined
       }
     })
   }

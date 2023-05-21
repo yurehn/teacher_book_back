@@ -6,6 +6,8 @@ const teacherRoutes = Router()
 const controller = new TeacherController()
 
 teacherRoutes.get('/', controller.getAll)
+
+// TODO: for future versions
 // teacherRoutes.get('/:id', controller.getById)
 // teacherRoutes.post('/', controller.create)
 // teacherRoutes.put('/:id', controller.update)

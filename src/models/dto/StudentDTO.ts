@@ -1,9 +1,9 @@
 interface BaseStudentDTO {
   id?: number;
   rut: string;
-  name: string;
+  first_name: string;
   last_name: string;
-  date_of_bird: Date;
+  date_of_birth: Date;
   gender: string;
   grade_id: number;
 }
