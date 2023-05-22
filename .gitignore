@@ -1,3 +1,11 @@
+# DataBase
+postgresBD/
+prisma/
+docker-compose.yml
+Dockerfile
+.env
+
+
 .DS_Store
 node_modules/
 # Logs
