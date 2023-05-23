@@ -4,6 +4,7 @@ prisma/
 docker-compose.yml
 Dockerfile
 .env
+dist/
 
 
 .DS_Store
