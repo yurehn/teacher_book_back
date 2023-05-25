@@ -38,7 +38,8 @@ export default class TeacherRepository {
       }
     })
 
-    return newTeacher
+    const { credential_id, ...teacherWithoutPassword } = newTeacher
+    return teacherWithoutPassword
   }
 
   public readonly update = async (id: number, teacher: UpdateTeacherDTO): Promise<void> => {
