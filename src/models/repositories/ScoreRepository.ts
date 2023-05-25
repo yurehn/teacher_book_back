@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 
 export default class ScoreRepository {
   public readonly findAll = async (): Promise<ScoreDTO[]> => {
-    const score = await prisma.score.findMany()
-    return score
+    const scores = await prisma.score.findMany()
+    return scores
   }
 
   public readonly findById = async (id: number): Promise<ScoreDTO | undefined> => {

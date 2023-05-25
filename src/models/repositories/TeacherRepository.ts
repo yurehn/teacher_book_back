@@ -6,8 +6,14 @@ const prisma = new PrismaClient()
 
 export default class TeacherRepository {
   public readonly findAll = async (): Promise<TeacherDTO[]> => {
-    const teacher = await prisma.teacher.findMany()
-    return teacher
+    const teachers = await prisma.teacher.findMany()
+
+    const teachersWithoutPassword = teachers.map((teacher) => {
+      const { credential_id, ...teacherWithoutPassword } = teacher
+      return teacherWithoutPassword
+    })
+
+    return teachersWithoutPassword
   }
 
   public readonly findById = async (id: number): Promise<TeacherDTO | undefined> => {
@@ -19,7 +25,8 @@ export default class TeacherRepository {
 
     if (!teacher) return
 
-    return teacher
+    const { credential_id, ...teacherWithoutPassword } = teacher
+    return teacherWithoutPassword
   }
 
   public readonly create = async (teacher: CreateTeacherDTO): Promise<TeacherDTO> => {
