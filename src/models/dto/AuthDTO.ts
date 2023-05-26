@@ -1,16 +1,27 @@
 interface BaseAuthDTO {
-  email: string
+  email?: string
+  password?: string
 }
 
 
 export interface AuthDTO extends BaseAuthDTO {
-  // id: number;
-}
-
-export interface CreateAuthDTO extends BaseAuthDTO {
+  id: number;
+  email: string
   password: string
 }
 
-export interface LoginUserDTO extends Partial<AuthDTO> {
+// export interface CreateAuthDTO extends BaseAuthDTO {
+//   password: string
+// }
+
+export interface LoginUserDTO extends BaseAuthDTO {
+  email: string
   password: string
+}
+
+export interface UserTokenPayload {
+  sub: number,
+  email: string,
+  iat: number,
+  exp: number
 }

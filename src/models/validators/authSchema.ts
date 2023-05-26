@@ -1,6 +1,5 @@
 import Joi from "joi";
 
-// TODO: hacer que devuelva el mensaje "The credentials provided are not valid."
 
 export const loginSchema = Joi.object().keys({
   email: Joi.string().email().required(),
