@@ -3,7 +3,6 @@ import { TeacherDTO, CreateTeacherDTO, UpdateTeacherDTO } from "../models/dto/Te
 import { createTeacherSchema, updateTeacherSchema } from "../models/validators/teacherSchemas"
 import TeacherRepository from "../models/repositories/TeacherRepository"
 import { tryCatch } from "../../utils/tryCatch"
-import { appError } from '../../middleware/errorHandler'
 
 
 export default class TeacherController {
@@ -17,9 +16,10 @@ export default class TeacherController {
     const { id } = req.params
     const repository = new TeacherRepository()
     const teacher = await repository.findById(parseInt(id))
-
+    
     if (!teacher) {
-      throw new appError(404, "Teacher not found")
+      res.status(404).json({ message: "Teacher not found" })
+      return
     }
     
     res.json(teacher)

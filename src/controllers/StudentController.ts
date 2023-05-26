@@ -3,7 +3,6 @@ import { StudentDTO, CreateStudentDTO, UpdateStudentDTO } from "../models/dto/St
 import { createStudentSchema, updateStudentSchema } from "../models/validators/studentSchemas"
 import StudentRepository from "../models/repositories/StudentRepository"
 import { tryCatch } from "../../utils/tryCatch"
-import { appError } from '../../middleware/errorHandler'
 
 
 export default class StudentController {
@@ -20,7 +19,8 @@ export default class StudentController {
     const student = await repository.findById(parseInt(id))
     
     if (!student) {
-      throw new appError(404, "Student not found")
+      res.status(404).json({ message: "Student not found" })
+      return
     }
 
     res.json(student)

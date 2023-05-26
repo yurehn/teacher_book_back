@@ -3,7 +3,6 @@ import { ObservationDTO, CreateObservationDTO, UpdateObservationDTO } from "../m
 import { createObservationSchema, updateObservationSchema } from "../models/validators/observationSchemas"
 import ObservationRepository from "../models/repositories/ObservationRepository"
 import { tryCatch } from "../../utils/tryCatch"
-import { appError } from '../../middleware/errorHandler'
 
 
 export default class ObservationController {
@@ -20,7 +19,8 @@ export default class ObservationController {
     const observation = await repository.findById(parseInt(id))
 
     if (!observation) {
-      throw new appError(404, "Observation not found")
+      res.status(404).json({ message: "Observation not found" })
+      return
     }
 
     res.json(observation)

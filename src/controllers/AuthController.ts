@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { tryCatch } from "../../utils/tryCatch"
 import { loginSchema, registerSchema } from "../models/validators/authSchema"
-import { appError } from '../../middleware/errorHandler'
 import AuthRepository from "../models/repositories/AuthRepository"
 import { CreateAuthDTO } from "../models/dto/AuthDTO"
 
@@ -19,13 +18,12 @@ export default class AuthController {
     const credentialsFromDb = await repository.findByEmail(credentials.email)
     
     if (!credentialsFromDb || credentialsFromDb.password !== credentials.password) {
-      throw new appError(401, "Invalid credentials")
+      res.status(401).json({ message: "Invalid credentials" })
+      return
     }
 
     res.sendStatus(200)
   })
-
-
 
   public readonly register = tryCatch( async (req: Request, res: Response) => {
     
