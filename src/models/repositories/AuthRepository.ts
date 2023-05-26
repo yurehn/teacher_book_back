@@ -30,7 +30,7 @@ export default class AuthRepository {
     return
   }
 
-
+  // TODO: for future versions
   // public readonly create = async (credential: CreateAuthDTO): Promise<AuthDTO> => {
   //   const newCredential = await prisma.credential.create({
   //     data: credential

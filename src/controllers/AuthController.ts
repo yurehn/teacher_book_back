@@ -41,6 +41,7 @@ export default class AuthController {
     res.json({ token })
   })
 
+  // TODO: for future versions
   // public readonly register = tryCatch( async (req: Request, res: Response) => {
   //   const credentials = req.body as CreateAuthDTO
 
