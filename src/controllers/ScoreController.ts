@@ -3,7 +3,6 @@ import { ScoreDTO, CreateScoreDTO, UpdateScoreDTO } from "../models/dto/ScoreDTO
 import { createScoreSchema, updateScoreSchema } from "../models/validators/scoreSchemas"
 import ScoreRepository from "../models/repositories/ScoreRepository"
 import { tryCatch } from "../../utils/tryCatch"
-import { appError } from '../../middleware/errorHandler'
 
 
 export default class ScoreController {
@@ -20,7 +19,8 @@ export default class ScoreController {
     const score = await repository.findById(parseInt(id))
 
     if (!score) {
-      throw new appError(404, "Score not found")
+      res.status(404).json({ message: "Score not found" })
+      return
     }
 
     res.json(score)

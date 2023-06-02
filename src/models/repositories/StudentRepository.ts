@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 
 export default class StudentRepository {
   public readonly findAll = async (): Promise<StudentDTO[]> => {
-    const student = await prisma.student.findMany()
-    return student
+    const students = await prisma.student.findMany()
+    return students
   }
 
   public readonly findById = async (id: number): Promise<StudentDTO | undefined> => {

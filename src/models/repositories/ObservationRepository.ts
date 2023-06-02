@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 
 export default class ObservationRepository {
   public readonly findAll = async (): Promise<ObservationDTO[]> => {
-    const observation = await prisma.observation.findMany()
-    return observation
+    const observations = await prisma.observation.findMany()
+    return observations
   }
 
   public readonly findById = async (id: number): Promise<ObservationDTO | undefined> => {

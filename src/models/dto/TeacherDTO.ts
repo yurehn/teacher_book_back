@@ -18,4 +18,4 @@ export interface CreateTeacherDTO extends BaseTeacherDTO {
   credential_id: number;
 }
 
-export interface UpdateTeacherDTO extends Partial<BaseTeacherDTO> { }
+export interface UpdateTeacherDTO extends Partial<CreateTeacherDTO> { }
